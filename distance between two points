@@ -1,0 +1,32 @@
+import math
+
+# 1. Exchange the values of two variables
+print("1. Swap two variables:")
+a = 10
+b = 20
+print("Before swapping: a =", a, "b =", b)
+a, b = b, a  # Simple statement to swap
+print("After swapping:  a =", a, "b =", b)
+print()
+
+# 2. Circulate the values of n variables
+print("2. Circulate values of n variables:")
+# Example with 4 variables
+vars = [1, 2, 3, 4]
+print("Before circulation:", vars)
+
+# Circulate (right shift)
+vars = [vars[-1]] + vars[:-1]
+print("After circulation: ", vars)
+print()
+
+# 3. Distance between two points
+print("3. Distance between two points:")
+x1, y1 = 2, 3
+x2, y2 = 7, 8
+
+# Distance formula: sqrt((x2 - x1)^2 + (y2 - y1)^2)
+distance = math.sqrt((x2 - x1)**2 + (y2 - y1)**2)
+print(f"Point 1: ({x1}, {y1})")
+print(f"Point 2: ({x2}, {y2})")
+print("Distance =", distance)
