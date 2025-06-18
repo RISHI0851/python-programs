@@ -1,0 +1,17 @@
+# Function to generate Fibonacci series
+def fibonacci(n):
+    a, b = 0, 1
+    print("Fibonacci Series:")
+    for _ in range(n):
+        print(a, end=" ")
+        a, b = b, a + b
+
+# Take input from user
+try:
+    n = int(input("Enter the number of terms (n): "))
+    if n <= 0:
+        print("Please enter a positive integer.")
+    else:
+        fibonacci(n)
+except ValueError:
+    print("Invalid input! Please enter an integer.")
