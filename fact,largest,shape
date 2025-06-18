@@ -1,0 +1,37 @@
+import math
+
+# 1. Function to calculate factorial
+def factorial(n):
+    result = 1
+    for i in range(2, n + 1):
+        result *= i
+    return result
+
+# 2. Function to find the largest number in a list
+def find_largest(numbers):
+    largest = numbers[0]
+    for num in numbers:
+        if num > largest:
+            largest = num
+    return largest
+
+# 3. Function to calculate area of a shape
+def area(shape, *args):
+    shape = shape.lower()
+    if shape == "circle":
+        radius = args[0]
+        return math.pi * radius ** 2
+    elif shape == "rectangle":
+        length, width = args
+        return length * width
+    elif shape == "triangle":
+        base, height = args
+        return 0.5 * base * height
+    else:
+        return "Invalid shape"
+
+# -------- Main Program --------
+
+# Factorial
+num = int(input("Enter a number to find factorial: "))
+print("Factoria
