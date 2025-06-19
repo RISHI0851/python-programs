@@ -1,0 +1,15 @@
+import csv
+
+# Replace 'data.csv' with the path to your CSV file
+filename = 'data.csv'
+
+try:
+    with open(filename, newline='') as csvfile:
+        reader = csv.reader(csvfile)
+        print("CSV File Contents:")
+        for row in reader:
+            print(row)
+except FileNotFoundError:
+    print(f"Error: File '{filename}' not found.")
+except Exception as e:
+    print("An error occurred:", e)
