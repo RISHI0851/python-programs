@@ -1,0 +1,119 @@
+class Book:
+    def __init__(self, book_id, title, author):
+        self.book_id = book_id
+        self.title = title
+        self.author = author
+        self.is_borrowed = False
+
+    def __str__(self):
+        status = "Borrowed" if self.is_borrowed else "Available"
+        return f"{self.book_id}: {self.title} by {self.author} [{status}]"
+library_books = {}
+def borrow_book(book_id):
+    book = library_books.get(book_id)
+    if book:
+        if not book.is_borrowed:
+            book.is_borrowed = True
+            print(f"You have successfully borrowed: {book.title}")
+        else:
+            print("This book is currently borrowed.")
+    else:
+        print("Book not found in the library.")
+borrowed_books = []
+
+def list_borrowed_books():
+    print("Borrowed Books:")
+    for book in library_books.values():
+        if book.is_borrowed:
+            print(book)
+def return_book(book_id):
+    book = library_books.get(book_id)
+    if book:
+        if book.is_borrowed:
+            book.is_borrowed = False
+            print(f"Returned: {book.title}")
+        else:
+            print("This book was not borrowed.")
+    else:
+        print("Book not found.")
+class Book:
+    def __init__(self, book_id, title, author):
+        self.book_id = book_id
+        self.title = title
+        self.author = author
+        self.is_borrowed = False
+
+    def __str__(self):
+        status = "Borrowed" if self.is_borrowed else "Available"
+        return f"{self.book_id}: {self.title} by {self.author} [{status}]"
+
+# Initialize library
+library_books = {
+    1: Book(1, "1984", "George Orwell"),
+    2: Book(2, "To Kill a Mockingbird", "Harper Lee"),
+    3: Book(3, "The Great Gatsby", "F. Scott Fitzgerald")
+}
+
+def display_books():
+    print("\nLibrary Books:")
+    for book in library_books.values():
+        print(book)
+
+def borrow_book(book_id):
+    book = library_books.get(book_id)
+    if book:
+        if not book.is_borrowed:
+            book.is_borrowed = True
+            print(f"You borrowed '{book.title}'.")
+        else:
+            print("Book is already borrowed.")
+    else:
+        print("Book ID not found.")
+
+def return_book(book_id):
+    book = library_books.get(book_id)
+    if book:
+        if book.is_borrowed:
+            book.is_borrowed = False
+            print(f"You returned '{book.title}'.")
+        else:
+            print("Book was not borrowed.")
+    else:
+        print("Book ID not found.")
+
+def list_borrowed_books():
+    print("\nBorrowed Books:")
+    found = False
+    for book in library_books.values():
+        if book.is_borrowed:
+            print(book)
+            found = True
+    if not found:
+        print("No books are currently borrowed.")
+
+# Main program loop
+while True:
+    print("\n--- Library Menu ---")
+    print("1. Display all books")
+    print("2. Borrow a book")
+    print("3. Return a book")
+    print("4. Show borrowed books")
+    print("5. Exit")
+
+    choice = input("Enter your choice (1–5): ")
+
+    if choice == '1':
+        display_books()
+    elif choice == '2':
+        book_id = int(input("Enter Book ID to borrow: "))
+        borrow_book(book_id)
+    elif choice == '3':
+        book_id = int(input("Enter Book ID to return: "))
+        return_book(book_id)
+    elif choice == '4':
+        list_borrowed_books()
+    elif choice == '5':
+        print("Exiting Library System.")
+        break
+    else:
+        print("Invalid choice. Please select 1–5.")
