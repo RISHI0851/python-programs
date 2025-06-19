@@ -1,0 +1,8 @@
+import math
+
+def unique_paths(m, n):
+    return math.comb(m + n - 2, m - 1)
+
+# Test cases
+print("Input: m=7, n=3 => Output:", unique_paths(7, 3))  # Output: 28
+print("Input: m=3, n=2 => Output:", unique_paths(3, 2))  # Output: 3
