@@ -1,0 +1,84 @@
+doctors = {
+    'Dr. Smith': {'slots': ['09:00', '10:00', '11:00'], 'appointments': {}},
+    'Dr. Alice': {'slots': ['13:00', '14:00', '15:00'], 'appointments': {}}
+}
+class HealthcareSystem:
+    def __init__(self):
+        self.doctors = {
+            'Dr. Smith': {'slots': ['09:00', '10:00', '11:00'], 'appointments': {}},
+            'Dr. Alice': {'slots': ['13:00', '14:00', '15:00'], 'appointments': {}}
+        }
+
+    def display_slots(self):
+        print("\nAvailable Time Slots:")
+        for doctor, info in self.doctors.items():
+            available = [slot for slot in info['slots'] if slot not in info['appointments']]
+            print(f"{doctor}: {available if available else 'No slots available'}")
+
+    def book_appointment(self, patient_name, doctor, time):
+        if doctor in self.doctors and time in self.doctors[doctor]['slots']:
+            if time not in self.doctors[doctor]['appointments']:
+                self.doctors[doctor]['appointments'][time] = patient_name
+                print(f"✅ Appointment booked with {doctor} at {time} for {patient_name}")
+            else:
+                print("❌ Slot already booked.")
+        else:
+            print("❌ Invalid doctor or time.")
+
+    def cancel_appointment(self, patient_name):
+        for doctor, info in self.doctors.items():
+            for time, name in list(info['appointments'].items()):
+                if name == patient_name:
+                    del info['appointments'][time]
+                    print(f"❌ Appointment for {patient_name} at {doctor}, {time} canceled.")
+                    return
+        print("No appointment found to cancel.")
+
+    def modify_appointment(self, patient_name, new_doctor, new_time):
+        self.cancel_appointment(patient_name)
+        self.book_appointment(patient_name, new_doctor, new_time)
+
+    def reminders(self):
+        print("\n📅 Upcoming Appointments:")
+        for doctor, info in self.doctors.items():
+            for time, patient in info['appointments'].items():
+                print(f"{patient} has an appointment with {doctor} at {time}")
+
+    def run(self):
+        while True:
+            print("\n--- Healthcare Appointment System ---")
+            print("1. View Available Slots")
+            print("2. Book Appointment")
+            print("3. Modify Appointment")
+            print("4. Cancel Appointment")
+            print("5. View Reminders")
+            print("6. Exit")
+
+            choice = input("Enter choice (1–6): ")
+
+            if choice == '1':
+                self.display_slots()
+            elif choice == '2':
+                name = input("Enter patient name: ")
+                doctor = input("Enter doctor name: ")
+                time = input("Enter time slot (e.g., 10:00): ")
+                self.book_appointment(name, doctor, time)
+            elif choice == '3':
+                name = input("Enter patient name: ")
+                new_doctor = input("Enter new doctor name: ")
+                new_time = input("Enter new time slot: ")
+                self.modify_appointment(name, new_doctor, new_time)
+            elif choice == '4':
+                name = input("Enter patient name to cancel: ")
+                self.cancel_appointment(name)
+            elif choice == '5':
+                self.reminders()
+            elif choice == '6':
+                print("Goodbye!")
+                break
+            else:
+                print("Invalid option.")
+
+# Run the system
+system = HealthcareSystem()
+system.run()
