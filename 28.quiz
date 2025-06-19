@@ -1,0 +1,108 @@
+class Question:
+    def __init__(self, question_text, options, correct_option):
+        self.question_text = question_text
+        self.options = options
+        self.correct_option = correct_option  # Index (0–3)
+
+    def is_correct(self, user_answer):
+        return user_answer == self.correct_option
+questions = [
+    Question("What is the capital of India?", ["Mumbai", "Delhi", "Chennai", "Kolkata"], 1),
+    Question("What is 2 + 2?", ["3", "4", "5", "6"], 1),
+    Question("Which planet is known as the Red Planet?", ["Earth", "Venus", "Mars", "Jupiter"], 2)
+]
+def present_question(question, q_number):
+    print(f"\nQ{q_number + 1}: {question.question_text}")
+    for i, option in enumerate(question.options):
+        print(f"{i + 1}. {option}")
+    try:
+        answer = int(input("Enter your answer (1–4): ")) - 1
+        if 0 <= answer < len(question.options):
+            return answer
+        else:
+            print("Invalid option. Counted as incorrect.")
+            return -1
+    except ValueError:
+        print("Invalid input. Counted as incorrect.")
+        return -1
+score = 0
+correct_answers = []
+
+for i, question in enumerate(questions):
+    user_answer = present_question(question, i)
+    if question.is_correct(user_answer):
+        print("✅ Correct!")
+        score += 1
+        correct_answers.append(True)
+    else:
+        print(f"❌ Incorrect! Correct answer: {question.options[question.correct_option]}")
+        correct_answers.append(False)
+def show_results(score, total, questions, correct_answers):
+    print("\n--- Quiz Results ---")
+    print(f"Your score: {score}/{total}")
+
+    print("\nDetailed Feedback:")
+    for i, (q, correct) in enumerate(zip(questions, correct_answers)):
+        result = "Correct" if correct else "Incorrect"
+        print(f"Q{i + 1}: {q.question_text} -> {result}")
+class Question:
+    def __init__(self, question_text, options, correct_option):
+        self.question_text = question_text
+        self.options = options
+        self.correct_option = correct_option
+
+    def is_correct(self, user_answer):
+        return user_answer == self.correct_option
+
+
+def present_question(question, q_number):
+    print(f"\nQ{q_number + 1}: {question.question_text}")
+    for i, option in enumerate(question.options):
+        print(f"{i + 1}. {option}")
+    try:
+        answer = int(input("Enter your answer (1–4): ")) - 1
+        if 0 <= answer < len(question.options):
+            return answer
+        else:
+            print("Invalid option. Counted as incorrect.")
+            return -1
+    except ValueError:
+        print("Invalid input. Counted as incorrect.")
+        return -1
+
+
+def show_results(score, total, questions, correct_answers):
+    print("\n--- Quiz Results ---")
+    print(f"Your score: {score}/{total}")
+
+    print("\nDetailed Feedback:")
+    for i, (q, correct) in enumerate(zip(questions, correct_answers)):
+        result = "✅ Correct" if correct else f"❌ Incorrect (Correct: {q.options[q.correct_option]})"
+        print(f"Q{i + 1}: {q.question_text} -> {result}")
+
+
+# Sample Questions
+questions = [
+    Question("What is the capital of India?", ["Mumbai", "Delhi", "Chennai", "Kolkata"], 1),
+    Question("What is 2 + 2?", ["3", "4", "5", "6"], 1),
+    Question("Which planet is known as the Red Planet?", ["Earth", "Venus", "Mars", "Jupiter"], 2),
+    Question("Which language is used for web apps?", ["Python", "Java", "HTML", "C++"], 2)
+]
+
+# Main Quiz Loop
+score = 0
+correct_answers = []
+
+for i, question in enumerate(questions):
+    user_answer = present_question(question, i)
+    if question.is_correct(user_answer):
+        print("✅ Correct!")
+        score += 1
+        correct_answers.append(True)
+    else:
+        print(f"❌ Incorrect! Correct answer: {question.options[question.correct_option]}")
+        correct_answers.append(False)
+
+# Show results
+show_results(score, len(questions), questions, correct_answers)
+
