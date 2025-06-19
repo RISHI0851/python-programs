@@ -1,0 +1,9 @@
+def climbStairs(n):
+    a, b = 1, 1  # Base cases: ways(0) = 1, ways(1) = 1
+    for i in range(2, n + 1):
+        a, b = b, a + b  # Update ways(n-1) and ways(n)
+    return b
+
+# Example usage
+n = 4
+print(climbStairs(n))  # Output: 5
