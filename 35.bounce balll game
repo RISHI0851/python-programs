@@ -1,0 +1,52 @@
+import pygame
+import sys
+
+# Initialize Pygame
+pygame.init()
+
+# Screen dimensions
+width, height = 600, 400
+screen = pygame.display.set_mode((width, height))
+pygame.display.set_caption("Bouncing Ball Game")
+
+# Colors
+WHITE = (255, 255, 255)
+RED = (255, 0, 0)
+
+# Ball properties
+ball_radius = 20
+x, y = width // 2, height // 2
+x_speed, y_speed = 4, 4
+
+# Clock for controlling frame rate
+clock = pygame.time.Clock()
+
+# Game loop
+running = True
+while running:
+    clock.tick(60)  # 60 frames per second
+    screen.fill(WHITE)
+
+    # Move ball
+    x += x_speed
+    y += y_speed
+
+    # Bounce off walls
+    if x - ball_radius <= 0 or x + ball_radius >= width:
+        x_speed = -x_speed
+    if y - ball_radius <= 0 or y + ball_radius >= height:
+        y_speed = -y_speed
+
+    # Draw ball
+    pygame.draw.circle(screen, RED, (x, y), ball_radius)
+
+    # Handle events
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    pygame.display.update()
+
+# Quit Pygame
+pygame.quit()
+sys.exit()
