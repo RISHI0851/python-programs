@@ -1,0 +1,53 @@
+def divide_numbers():
+    try:
+        a = float(input("Enter numerator: "))
+        b = float(input("Enter denominator: "))
+        result = a / b
+        print("Result of division:", result)
+    except ZeroDivisionError:
+        print("Error: Division by zero is not allowed.")
+    except ValueError:
+        print("Error: Please enter valid numbers.")
+
+def check_voter_age():
+    try:
+        age = int(input("Enter voter's age: "))
+        if age < 0:
+            raise ValueError("Age cannot be negative.")
+        elif age < 18:
+            print("Not eligible to vote.")
+        else:
+            print("Eligible to vote.")
+    except ValueError as e:
+        print("Invalid age:", e)
+
+def validate_student_marks():
+    try:
+        marks = float(input("Enter student's marks (0–100): "))
+        if marks < 0 or marks > 100:
+            raise ValueError("Marks should be between 0 and 100.")
+        print("Marks are valid.")
+    except ValueError as e:
+        print("Invalid marks:", e)
+
+# Main program
+while True:
+    print("\nChoose an operation:")
+    print("1. Safe Division")
+    print("2. Voter Age Check")
+    print("3. Student Marks Validation")
+    print("4. Exit")
+
+    choice = input("Enter your choice (1–4): ")
+
+    if choice == '1':
+        divide_numbers()
+    elif choice == '2':
+        check_voter_age()
+    elif choice == '3':
+        validate_student_marks()
+    elif choice == '4':
+        print("Exiting program.")
+        break
+    else:
+        print("Invalid choice. Please select from 1 to 4.")
