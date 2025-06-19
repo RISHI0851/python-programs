@@ -1,0 +1,24 @@
+
+import math
+
+def find_square_root(num):
+    return math.sqrt(num)
+
+def find_gcd(a, b):
+    return math.gcd(a, b)
+# main_program.py
+
+import math_extended
+
+# Take user input
+num = float(input("Enter a number to find its square root: "))
+a = int(input("Enter first number for GCD: "))
+b = int(input("Enter second number for GCD: "))
+
+# Use functions from math_extended module
+sqrt_result = math_extended.find_square_root(num)
+gcd_result = math_extended.find_gcd(a, b)
+
+# Display results
+print(f"Square root of {num} is: {round(sqrt_result, 2)}")
+print(f"GCD of {a} and {b} is: {gcd_result}")
